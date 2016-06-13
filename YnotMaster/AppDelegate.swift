@@ -18,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         print("saasdsat if it show up on the test branch")
         print("this is written in the test branch")
+        print("test if i can fade back to last version")
         return true
     }
 
