@@ -10,6 +10,12 @@ import UIKit
 
 class FirstTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var headImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var firstPropery: UILabel!
+    @IBOutlet weak var secondProperty: UILabel!
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -17,7 +23,6 @@ class FirstTableViewCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     
