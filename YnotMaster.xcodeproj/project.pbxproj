@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		306C8E8E8802825F74443C51 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A94D50022768ACD09DB0F52 /* Pods.framework */; };
+		7C3E93FA1D103A84005D4379 /* ADView.json in Resources */ = {isa = PBXBuildFile; fileRef = 7C3E93F91D103A84005D4379 /* ADView.json */; };
 		7C5A9F3B1D02A39A00D9DFC2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5A9F3A1D02A39A00D9DFC2 /* AppDelegate.swift */; };
 		7C5A9F3D1D02A39A00D9DFC2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C5A9F3C1D02A39A00D9DFC2 /* ViewController.swift */; };
 		7C5A9F401D02A39A00D9DFC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C5A9F3E1D02A39A00D9DFC2 /* Main.storyboard */; };
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		5C95481B7F2AF4986DC9DC79 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7A94D50022768ACD09DB0F52 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7C3E93F91D103A84005D4379 /* ADView.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = ADView.json; sourceTree = "<group>"; };
 		7C5A9F371D02A39900D9DFC2 /* YnotMaster.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YnotMaster.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C5A9F3A1D02A39A00D9DFC2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7C5A9F3C1D02A39A00D9DFC2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				7C5A9F431D02A39A00D9DFC2 /* LaunchScreen.storyboard */,
 				7C5A9F461D02A39A00D9DFC2 /* Info.plist */,
 				7CD3D8411D0D34680030A61F /* YnotMaster-Bridging-Header.h */,
+				7C3E93F91D103A84005D4379 /* ADView.json */,
 			);
 			path = YnotMaster;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 				7C5A9F451D02A39A00D9DFC2 /* LaunchScreen.storyboard in Resources */,
 				7C5A9F421D02A39A00D9DFC2 /* Assets.xcassets in Resources */,
 				7CD3D8501D0D49640030A61F /* FirstTableViewCell.xib in Resources */,
+				7C3E93FA1D103A84005D4379 /* ADView.json in Resources */,
 				7C5A9F401D02A39A00D9DFC2 /* Main.storyboard in Resources */,
 				7CD3D8541D0D49760030A61F /* SecondTableViewCell.xib in Resources */,
 			);
