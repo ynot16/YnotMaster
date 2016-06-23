@@ -16,7 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
-        return true
+        
+                return true
     }
 
     func applicationWillResignActive(application: UIApplication) {
@@ -40,7 +41,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+}
 
+func viewController(view: UIView) -> UIViewController? {
+    for(var next = view.superview;(next != nil);next = next?.superview) {
+        let nextResponder = next?.nextResponder()
+        if ((nextResponder?.isKindOfClass(UIViewController.self)) != nil) {
+            let responder = nextResponder as? UIViewController
+            return responder
+        }
+    }
+    return nil
+}
 
+struct Window {
+    static let SCREENWIDTH = UIScreen.mainScreen().bounds.width
+    static let SCREENHEIGHT = UIScreen.mainScreen().bounds.height
 }
 

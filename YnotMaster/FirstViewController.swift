@@ -31,16 +31,34 @@ class FirstViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(FirstViewController.hideKeyboard(_:)))
         view.addGestureRecognizer(tap)
         
-//        loadLocalJsonData()
         
         // Do any additional setup after loading the view.
     }
     
     func loadLocalJsonData() {
-        let path = NSBundle.mainBundle().pathForResource("ADView", ofType: "json")
-        let data = NSData(contentsOfFile: path!)
-        let json = JSON(data: data!)
-        print("json is \(json)")
+        let manager = WidgetsParseManager()
+        let itemArray = manager.loadJSONData()
+        
+        for item in itemArray {
+            if item.name == "ADView" {
+                var imgArray = [String]()
+                for dic in item.items! {
+                    let imgURL = dic["imgURL"].stringValue
+                    imgArray.append(imgURL)
+                }
+                let sliderView = UISliderImageView(frame: CGRectMake(item.left!, item.top! + 210, view.frame.size.width, item.height!), imageArray: imgArray)
+                view.addSubview(sliderView)
+            }
+            
+            if item.name == "ListView" {
+                let tableView = UITableView(frame: CGRectMake(item.left!, item.top! + 210, self.view.frame.size.width - item.left! - item.right!, view.frame.size.height - item.top! - 210), style: .Plain)
+                tableView.delegate = self
+                tableView.dataSource = self
+                tableView.registerNib(UINib(nibName: "FirstTableViewCell", bundle: nil), forCellReuseIdentifier: "First Cell")
+                tableView.registerNib(UINib(nibName: "SecondTableViewCell", bundle: nil), forCellReuseIdentifier: "Second Cell")
+                view.addSubview(tableView)
+            }
+        }
     }
 
     func hideKeyboard(gesture: UITapGestureRecognizer) {
@@ -53,17 +71,24 @@ class FirstViewController: UIViewController {
     
     
     @IBAction func showADAction(sender: AnyObject) {
+        
+        loadLocalJsonData()
+        return
         /**
          加载解析json文件，获取对应参数
          */
         let path = NSBundle.mainBundle().pathForResource("ADView", ofType: "json")
         let data = NSData(contentsOfFile: path!)
         let json = JSON(data: data!)
-        let width = CGFloat(json["configuration"]["width"].floatValue)
-        let height = CGFloat(json["configuration"]["height"].floatValue)
-        let left = CGFloat(json["left"].floatValue)
-        let top = CGFloat(json["top"].floatValue)
-        let right = CGFloat(json["right"].floatValue)
+        let widgets = json["widgets"].arrayValue
+        
+        for widgetDic in widgets {
+            let width = CGFloat(widgetDic["configuration"]["width"].floatValue)
+            let height = CGFloat(widgetDic["configuration"]["height"].floatValue)
+            let left = CGFloat(widgetDic.floatValue)
+            let top = CGFloat(widgetDic.floatValue)
+            let right = CGFloat(widgetDic.floatValue)
+        }
         
         let items = json["items"].arrayValue
         var imgArray = [String]()
@@ -72,19 +97,20 @@ class FirstViewController: UIViewController {
             imgArray.append(imgURL)
         }
         
+        
         /**
          拿到解析的数据，创建控件
          */
-        let sliderView = UISliderImageView(frame: CGRectMake(left, top + 210, view.frame.size.width, height), imageArray: imgArray)
-        view.addSubview(sliderView)
-        
+//        let sliderView = UISliderImageView(frame: CGRectMake(left, top + 210, view.frame.size.width, height), imageArray: imgArray)
+//        view.addSubview(sliderView)
+//        
         /**
          目的：pm可以参与进来，通过拖拽控件，完成部分app界面布局。这样的话，要提供若干模版控件供pm选择。后台继而生成xml配置文件，前端通过请求解析获得json数据，继而加载相应控件。
          1、这样的流程其实跟原先一样，只是在原来纯数据展示之余，多了页面展示的参数（configuration之类）
          2、将多个控件组件化，通过请求的参数配置
          3、前提也要知道这个页面会展示哪些控件，而不是根据请求参数动态创建控件
          4、封装好解析类
-         5、有一些控件可能不同通过这样方式配置，例如标签栏，如果是放在tableview的cell，或headerView上面（相当于控件里面包含控件）
+         5、有一些控件可能不能通过这样方式配置，例如标签栏，如果是放在tableview的cell，或headerView上面（相当于控件里面包含控件）
          6、
          */
     }
@@ -130,6 +156,7 @@ class FirstViewController: UIViewController {
 }
 
 extension FirstViewController: UITableViewDelegate, UITableViewDataSource {
+    
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 20
     }
@@ -143,6 +170,10 @@ extension FirstViewController: UITableViewDelegate, UITableViewDataSource {
         case .styleMixed:
             return (indexPath.row / 2) % 2 == 0 ? 90 : 140
         }
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
