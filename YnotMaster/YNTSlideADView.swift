@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class YNSliderADView: YNControlWrapper {
+class YNTSliderADView: YNTControlWrapper {
     
     var itemArray = [ADModel]()
     var scrollView: UIScrollView?
@@ -49,21 +49,28 @@ class YNSliderADView: YNControlWrapper {
             let imageView = UIImageView(frame: CGRectMake(frame.size.width * CGFloat(index), 0, frame.size.width, frame.size.height))
             imageView.userInteractionEnabled = true
             imageView.sd_setImageWithURL(NSURL(string: model.imgURL), placeholderImage: UIImage(named: "apple\(index)"))
-            let tap = UITapGestureRecognizer(target: self, action: #selector(YNSliderADView.imageTap(_:)))
+            let tap = UITapGestureRecognizer(target: self, action: #selector(YNTSliderADView.imageTap(_:)))
             imageView.addGestureRecognizer(tap)
             scrollView?.addSubview(imageView)
         }
     }
-    
-    // MARK: -----Target Action
+}
+
+// MARK: -----Target Action
+
+
+extension YNTSliderADView {
     
     //通用view与业务逻辑的冲突，是否用面向接口解决？
     func imageTap(ges: UITapGestureRecognizer) {
         delegate?.imageTap(self, url: "", flag: "")
     }
+
 }
 
-extension YNSliderADView: UIScrollViewDelegate {
+    // MRK: ------ScrollView Delegate
+
+extension YNTSliderADView: UIScrollViewDelegate {
     func scrollViewDidScroll(scrollView: UIScrollView) {
         self.pageControl?.currentPage = Int(scrollView.contentOffset.x / frame.size.width)
     }

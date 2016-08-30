@@ -37,7 +37,7 @@ class FirstViewController: UIViewController {
     
     func loadLocalJsonData() {
         let manager = WidgetsParseManager()
-        let itemArray = manager.loadJSONData()
+        let itemArray = manager.loadJSONData("ADView")
         
         for item in itemArray {
             if item.name == "ADView" {

@@ -39,10 +39,29 @@ struct WidgetItem {
 
 class WidgetsParseManager {
     
-    func loadJSONData() -> [WidgetItem] {
-        let path = NSBundle.mainBundle().pathForResource("ADView", ofType: "json")
+    func loadJSONData(fileName: String) -> [WidgetItem] {
+        let path = NSBundle.mainBundle().pathForResource(fileName, ofType: "json")
         let data = NSData(contentsOfFile: path!)
         let json = JSON(data: data!)
+        let widgets = json["widgets"].arrayValue
+        return widgets.flatMap{(itemDic: JSON) -> WidgetItem? in
+            var item = WidgetItem()
+            guard let name = itemDic["name"].string,
+                let config = itemDic["configuration"] as? JSON,
+                let position = itemDic["position"] as? JSON,
+                let items = itemDic["items"].array
+                else { return nil }
+            item.name = name
+            item.configuration = config
+            item.position = position
+            item.items = items
+            item.transformConfigAndPosi()
+            return item
+        }
+    }
+    
+    func parseJSONData(data: NSData) -> [WidgetItem] {
+        let json = JSON(data: data)
         let widgets = json["widgets"].arrayValue
         return widgets.flatMap{(itemDic: JSON) -> WidgetItem? in
             var item = WidgetItem()

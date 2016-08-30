@@ -8,16 +8,17 @@
 
 import UIKit
 
-enum YNControlType: String {
+enum YNTControlType: String {
     case ADView = "ADView"
     case TableView = "TableView"
+    case CategoryView = "CategoryView"
 }
 
-class YNControlWrapper: UIView {
+class YNTControlWrapper: UIView {
     var name: String?
     var model: WidgetItem?
-    var subView: YNControlWrapper?
-    weak var delegate: ADProtocol?
+    var subView: YNTControlWrapper?
+    weak var delegate: YNTControlClickProtocol?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,12 +37,14 @@ class YNControlWrapper: UIView {
     }
     
     func createSubview(name: String) {
-        let controlType = YNControlType(rawValue: name)
+        let controlType = YNTControlType(rawValue: name)
         switch controlType! {
         case .ADView:
-            subView = YNSliderADView(frame: frame, itemArray: model!.items!)
+            subView = YNTSliderADView(frame: frame, itemArray: model!.items!)
         case .TableView:
-            subView = YNTableView(frame: frame, itemArray: model!.items!)
+            subView = YNTTableView(frame: frame, itemArray: model!.items!)
+        case .CategoryView:
+            subView = YNTEigthCategoryView(frame: frame, itemArray: model!.items!)
         }
     }
 }

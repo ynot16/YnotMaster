@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyJSON
 
-class YNTableView: YNControlWrapper {
+class YNTTableView: YNTControlWrapper {
     
     var tableView: UITableView?
     let imageArray = ["apple0", "apple1", "apple2", "apple3"]
@@ -23,15 +23,16 @@ class YNTableView: YNControlWrapper {
             return model
         })
         
-        tableView = UITableView(frame: frame, style: .Plain)
+        tableView = UITableView(frame: CGRectMake(0, 0, frame.size.width, frame.size.height), style: .Plain)
         tableView?.delegate = self
         tableView?.dataSource = self
+        tableView?.tableFooterView = UIView()
         tableView?.registerNib(UINib(nibName: "FirstTableViewCell", bundle: nil), forCellReuseIdentifier: "First Cell")
         addSubview(tableView!)
     }
 }
 
-extension YNTableView: UITableViewDelegate, UITableViewDataSource {
+extension YNTTableView: UITableViewDelegate, UITableViewDataSource {
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
@@ -44,6 +45,13 @@ extension YNTableView: UITableViewDelegate, UITableViewDataSource {
         if let cell = tableView.dequeueReusableCellWithIdentifier("First Cell", forIndexPath: indexPath) as? FirstTableViewCell {
             let model = itemArray[indexPath.row]
             cell.headImageView?.image = UIImage(named: imageArray[indexPath.row % 4])
+            print("cell constraints count == \(cell.constraints.count)")
+            for constraint in cell.constraints {
+                if constraint.firstAttribute == .Left {
+                    print("hey i am the leading constraint")
+                }
+            }
+            
             cell.titleLabel.text = model.title
             cell.firstPropery.text = String(model.readTimes)
             cell.secondProperty.text = model.time
@@ -59,8 +67,6 @@ extension YNTableView: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let vc = viewController(self)
-        let firstVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("First")
-        vc?.navigationController?.pushViewController(firstVC, animated: true)        
+        delegate?.tableViewRowSelect(self, indexPath: indexPath, flag: "")
     }
 }

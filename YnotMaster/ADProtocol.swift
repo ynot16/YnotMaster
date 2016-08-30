@@ -8,14 +8,28 @@
 
 import Foundation
 
-protocol ADProtocol: class {
+protocol YNTControlClickProtocol: class {
     func imageTap(view:UIView, url: String, flag: String)
+    func tableViewRowSelect(view: UIView, indexPath: NSIndexPath, flag: String)
+    func collectionViewRowSelect(view: UIView, indexPath: NSIndexPath, flag: String)
 }
 
-extension ADProtocol {
+extension YNTControlClickProtocol {
     func imageTap(view:UIView, url: String, flag: String) {
         let vc = viewController(view)
-        let firstVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("First")
+        let firstVC = WebViewController()
         vc?.navigationController?.pushViewController(firstVC, animated: true)
+    }
+    
+    func tableViewRowSelect(view: UIView, indexPath: NSIndexPath, flag: String) {
+        let vc = viewController(view)
+        let firstVC = DemoViewController()
+        vc?.presentViewController(firstVC, animated: true, completion: nil)
+    }
+    
+    func collectionViewRowSelect(view: UIView, indexPath: NSIndexPath, flag: String) {
+        let vc = viewController(view)
+        let firstVC = DemoViewController()
+        vc?.presentViewController(firstVC, animated: true, completion: nil)
     }
 }
