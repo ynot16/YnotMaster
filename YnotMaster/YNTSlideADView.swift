@@ -58,7 +58,6 @@ class YNTSliderADView: YNTControlWrapper {
 
 // MARK: -----Target Action
 
-
 extension YNTSliderADView {
     
     //通用view与业务逻辑的冲突，是否用面向接口解决？
@@ -68,7 +67,7 @@ extension YNTSliderADView {
 
 }
 
-    // MRK: ------ScrollView Delegate
+// MARK: ------ScrollView Delegate
 
 extension YNTSliderADView: UIScrollViewDelegate {
     func scrollViewDidScroll(scrollView: UIScrollView) {

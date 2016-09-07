@@ -35,6 +35,54 @@
                         ]
                },
                {
+               "name":"CategoryView",
+               "configuration":{
+               "style":"default",
+               "width":9999,
+               "height":170,
+               },
+               "position":{
+               "top":180,
+               "left":0,
+               "bottom":0,
+               "right":0,
+               },
+               "items":[
+                        {
+                        "title":"技能",
+                        "imgURL":"http://58.67.151.250:7051/MobileELearning/WebFiles/perphoto/c22ad179-34d5-4c4f-99df-158ee1d68583.jpg",
+                        },
+                        {
+                        "title":"专业",
+                        "imgURL":"http://58.67.151.250:7051/MobileELearning/WebFiles/perphoto/c22ad179-34d5-4c4f-99df-158ee1d68583.jpg",
+                        },
+                        {
+                        "title":"拓展",
+                        "imgURL":"http://58.67.151.250:7051/MobileELearning/WebFiles/perphoto/c22ad179-34d5-4c4f-99df-158ee1d68583.jpg",
+                        },
+                        {
+                        "title":"题目",
+                        "imgURL":"http://58.67.151.250:7051/MobileELearning/WebFiles/perphoto/c22ad179-34d5-4c4f-99df-158ee1d68583.jpg",
+                        },
+                        {
+                        "title":"开发",
+                        "imgURL":"http://58.67.151.250:7051/MobileELearning/WebFiles/perphoto/c22ad179-34d5-4c4f-99df-158ee1d68583.jpg",
+                        },
+                        {
+                        "title":"实施",
+                        "imgURL":"http://58.67.151.250:7051/MobileELearning/WebFiles/perphoto/c22ad179-34d5-4c4f-99df-158ee1d68583.jpg",
+                        },
+                        {
+                        "title":"培训",
+                        "imgURL":"http://58.67.151.250:7051/MobileELearning/WebFiles/perphoto/c22ad179-34d5-4c4f-99df-158ee1d68583.jpg",
+                        },
+                        {
+                        "title":"全部",
+                        "imgURL":"http://58.67.151.250:7051/MobileELearning/WebFiles/perphoto/c22ad179-34d5-4c4f-99df-158ee1d68583.jpg",
+                        }
+                        ]
+               },
+               {
                "name":"TableView",
                "configuration":{
                "style":"styleOne",
@@ -42,7 +90,7 @@
                "height":9999,
                },
                "position":{
-               "top":180,
+               "top":350,
                "left":0,
                "bottom":0,
                "right":0,

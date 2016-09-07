@@ -11,6 +11,7 @@ import UIKit
 class WebViewController: UIViewController {
     
     var url: String? = ""
+    var nav: UINavigationController?
     
     lazy var webView: UIWebView = {
         let webView = UIWebView(frame: CGRectMake(0, 0, Window.SCREENWIDTH, Window.SCREENHEIGHT))
@@ -23,6 +24,11 @@ class WebViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = UIColor.whiteColor()
         view.addSubview(webView)
+    }
+    
+    
+    deinit {
+        print("i am deinit")
     }
 }
 

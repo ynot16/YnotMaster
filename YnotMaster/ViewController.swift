@@ -21,6 +21,8 @@ class ViewController: UIViewController, YNTControlClickProtocol {
      5.跳转的页面的某些布局是否可以写死，而不用重新再走一遍配置的流程。
     */
     
+    // 一个通用vc，要加载不用的url，配置不同的界面，通过identifier区分
+    var identifier: String?
     var wrapper: YNTControlWrapper?
     let manager = WidgetsParseManager()
     var config: String?
@@ -46,8 +48,15 @@ class ViewController: UIViewController, YNTControlClickProtocol {
                 }
         }
         
-        
-        let itemArray = manager.loadJSONData("ADView")
+        var itemArray = [WidgetItem]()
+        switch identifier! {
+        case "ADView":
+            itemArray = manager.loadJSONData("ADView")
+        case "CategoryView":
+            itemArray = manager.loadJSONData("CategoryView")
+        default:
+            break
+        }
         
         for item in itemArray {
             guard let name = item.name,

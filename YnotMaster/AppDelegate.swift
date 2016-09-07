@@ -57,9 +57,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        window?.makeKeyAndVisible()
         
         
-        for _ in 0 ..< 2 {
+        // 暂时只能写死tabbar的item数量，不能从后台加载
+        let identifierArray = ["ADView", "CategoryView"]
+        for index in 0 ..< 2 {
             let vc = ViewController()
             vc.tabBarItem.title = "hey"
+            vc.identifier = identifierArray[index]
             vc.tabBarItem.image = UIImage(named: "category2")
             vc.tabBarItem.selectedImage = UIImage(named: "category1")
             let nav = UINavigationController(rootViewController: vc)
